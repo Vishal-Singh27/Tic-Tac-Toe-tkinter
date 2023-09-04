@@ -37,18 +37,17 @@ class Buttons():
             self.buttons[newrow][newcol].configure(text=X, state="disabled")
             self.buttons[newrow][newcol].configure(bg='white')  
             
+            
     def clicked(self, window, row, col):
         self.buttons[row][col].configure(text=Board.player(self.boardcondition()), state="disabled", bg='white')
         if Board.terminal(self.boardcondition()):
-            print("yes")
             self.declare_winner(window)
-            
-        nextrow, nextcol = Board.minimax(self.boardcondition())
-        self.buttons[nextrow][nextcol].configure(text=Board.player(self.boardcondition()), state="disabled")
-        self.buttons[nextrow][nextcol].configure(bg='white')  
-        
-        if Board.terminal(self.boardcondition()):
-            self.declare_winner(window)
+        else:
+            nextrow, nextcol = Board.minimax(self.boardcondition())
+            self.buttons[nextrow][nextcol].configure(text=Board.player(self.boardcondition()), state="disabled")
+            self.buttons[nextrow][nextcol].configure(bg='white')
+            if Board.terminal(self.boardcondition()):
+                self.declare_winner(window)
     
     
     def boardcondition(self):
@@ -67,7 +66,7 @@ class Buttons():
     
     def declare_winner(self, window):
         window.update()
-        winner = self.boardcondition()
+        winner = Board.winner(self.boardcondition())
         if self.player == winner:
             response = messagebox.askyesno("You Won!!", "Congratulations! You Won!, Wanna play again?")
             if response == 0:
@@ -75,15 +74,13 @@ class Buttons():
             else:
                 self = Buttons(self.window, self.startrow, self.rowspan, self.columnspan, self.startcolumn, self.padx, self.pady, self.player)
                 
-        elif self.player == None:
-            print(self.player)
+        elif winner == None:
             response = messagebox.askyesno("Tied!", "Game tied, wanna try again?")
             if response == 0:
                 window.destroy()
             else:
                 self = Buttons(self.window, self.startrow, self.rowspan, self.columnspan, self.startcolumn, self.padx, self.pady, self.player)
         else:
-            print(self.player)
             response = messagebox.askyesno("You Lose!", "You lost!, wanna try again?")
             if response == 0:
                 window.destroy()
@@ -94,7 +91,7 @@ class Buttons():
 def main():
     root = Tk()
 
-    button = Buttons(root, player=O, rowspan=3, columnspan=3, padx=20, pady=20)
+    button = Buttons(root, player=X, rowspan=3, columnspan=3, padx=20, pady=20)
     root.mainloop()
     
 if __name__ == "__main__":

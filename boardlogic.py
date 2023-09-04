@@ -218,13 +218,14 @@ def main():
 
     print("Testboard3: ")
     test_board3 = [
-        ['X', 'O', 'X'],
-        ['O', 'O', 'X'],
-        ['X', 'X', 'O']
+    ['X', 'O', 'X'],
+    ['X', 'O', 'O'],
+    ['O', 'X', 'X']
     ]
     # Player: 'X' (since X count: 5, O count: 4)
     # Best Move: (1, 1)
     # Expected Output: (1, 1)
+    print(Board.winner(test_board3))
     print(Board.minimax(test_board3))
 
     print("Testboard4: ")
