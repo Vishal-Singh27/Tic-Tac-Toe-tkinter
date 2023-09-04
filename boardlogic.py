@@ -44,7 +44,7 @@ class Board:
         xcount = 0
         ocount = 0
         if not board:
-            for row in self.board:
+            for row in cls.board:
                 for cell in range(3):
                     if not row[cell]:
                         continue
@@ -167,13 +167,13 @@ class Board:
     def findmin(cls, board):
         if cls.terminal(board):
             return cls.utility(board)
-        ans = [math.inf, None]
+        
+        ans = math.inf
         for action in cls.actions(board):
             tmp = min(math.inf, cls.findmax(cls.result(board, action)))
-            if ans[0] > tmp:
-                ans[0] = tmp
-                ans[1] = action
-    
+            if ans > tmp:
+                ans = tmp
+        return ans
             
     # Classmethod that finds maximum utility of all actions at a board state
     @classmethod
@@ -184,10 +184,9 @@ class Board:
         ans = [-math.inf, None]
         for action in cls.actions(board):
             tmp = max(-math.inf, cls.findmin(cls.result(board, action)))
-            if ans[0] < tmp:
-                ans[0] = tmp
-                ans[1] = action
-        return ans[0]
+            if ans < tmp:
+                ans = tmp
+        return ans
     
 
 def main():
@@ -204,9 +203,9 @@ def main():
 
     print("Testboard2: ")
     test_board2 = [
-        ['X', 'O', 'X'],
+        ['X', 'O', None],
         [None, 'O', None],
-        ['O', 'X', None]
+        ['O', 'X', X]
     ]
     # Player: 'X' (since X count: 3, O count: 3)
     # Best Move: (2, 2)
@@ -226,9 +225,9 @@ def main():
 
     print("Testboard4: ")
     test_board4 = [
-        ['X', 'O', None],
+        ['X', 'O', X],
         ['O', 'X', None],
-        [None, None, None]
+        [O, None, None]
     ]
     # Player: 'X' (since X count: 2, O count: 2)
     # Best Move: (2, 0)
@@ -237,7 +236,7 @@ def main():
 
     print("Testboard5: ")
     test_board5 = [
-        ['None', 'O', 'X'],
+        [None, 'O', 'X'],
         [None, 'O', 'X'],
         [X, 'X', 'O']
     ]
