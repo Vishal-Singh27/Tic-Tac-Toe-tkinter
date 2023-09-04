@@ -167,16 +167,13 @@ class Board:
     def findmin(cls, board):
         if cls.terminal(board):
             return cls.utility(board)
-        
-        ans = math.inf
-        tmp = list()
+        ans = [math.inf, None]
         for action in cls.actions(board):
             tmp = min(math.inf, cls.findmax(cls.result(board, action)))
-            if tmp > ans:
-                return ans
-            if ans > tmp:
-                ans = tmp
-        return ans
+            if ans[0] > tmp:
+                ans[0] = tmp
+                ans[1] = action
+    
             
     # Classmethod that finds maximum utility of all actions at a board state
     @classmethod
@@ -184,10 +181,13 @@ class Board:
         if cls.terminal(board):
             return cls.utility(board)
     
-        ans = -math.inf
+        ans = [-math.inf, None]
         for action in cls.actions(board):
             tmp = max(-math.inf, cls.findmin(cls.result(board, action)))
-        return ans
+            if ans[0] < tmp:
+                ans[0] = tmp
+                ans[1] = action
+        return ans[0]
     
 
 def main():
