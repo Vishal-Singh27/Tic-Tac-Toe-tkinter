@@ -181,12 +181,16 @@ class Board:
         if cls.terminal(board):
             return cls.utility(board)
     
-        ans = [-math.inf, None]
+        ans = -math.inf
         for action in cls.actions(board):
             tmp = max(-math.inf, cls.findmin(cls.result(board, action)))
             if ans < tmp:
                 ans = tmp
         return ans
+    
+    
+    def __str__(self):
+        return self.board
     
 
 def main():
@@ -241,8 +245,8 @@ def main():
         [X, 'X', 'O']
     ]
     # Player: 'X' (since X count: 6, O count: 3)
-    # Best Move: (0, 2)
-    # Expected Output: (0, 2)
+    # Best Move: (0, 0)
+    # Expected Output: (0, 0)
     print(Board.minimax(test_board5))
     
 
