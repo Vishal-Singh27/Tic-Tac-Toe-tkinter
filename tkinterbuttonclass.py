@@ -76,12 +76,14 @@ class Buttons():
                 self = Buttons(self.window, self.startrow, self.rowspan, self.columnspan, self.startcolumn, self.padx, self.pady, self.player)
                 
         elif self.player == None:
+            print(self.player)
             response = messagebox.askyesno("Tied!", "Game tied, wanna try again?")
             if response == 0:
                 window.destroy()
             else:
                 self = Buttons(self.window, self.startrow, self.rowspan, self.columnspan, self.startcolumn, self.padx, self.pady, self.player)
         else:
+            print(self.player)
             response = messagebox.askyesno("You Lose!", "You lost!, wanna try again?")
             if response == 0:
                 window.destroy()
