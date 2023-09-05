@@ -16,14 +16,14 @@ def start():
 def playasx(window):
     window.destroy()
     startbutton.destroy()
-    Buttons(root, padx=40, pady=40, columnspan=2)
+    Buttons(root, padx=70, pady=70, columnspan=2)
 
 
 # If user chooses to play as O
 def playaso(window):
     window.destroy()
     startbutton.destroy()
-    Buttons(root, player=O, padx=20, pady=20, columnspan=2)
+    Buttons(root, player=O, padx=70, pady=70, columnspan=2)
 
 
 # A button to start the game

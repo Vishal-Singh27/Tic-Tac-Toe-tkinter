@@ -164,12 +164,11 @@ class Board:
         elif cls.player(board) == O:
             ans = math.inf
             for action in cls.actions(board):
-                tmp = min(math.inf, cls.findmax(cls.result(board, action)))
-                if ans[0] > tmp:
-                    ans[0] = tmp
-                    ans[1] = action
-                    
-        return ans[1]
+                result = cls.findmax(cls.result(board, action))
+                if result < ans:
+                    ans = result
+                    act = action
+        return act
     
     # Classmethod that finds minimum utility of all actions at a board state
     @classmethod
