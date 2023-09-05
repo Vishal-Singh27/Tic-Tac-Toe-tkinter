@@ -251,15 +251,13 @@ def main():
     ]
     print(Board.minimax(test_board5))
     
-    print("test_board7")
+    # Testboard 6
+    print("test_board 6")
     test_board6 = [
         [None, 'O', 'X'],
         [None, None, 'X'],
         [None, None, None]
     ]
-    # Player: 'X' (since X count: 6, O count: 3)
-    # Best Move: (0, 2)
-    # Expected Output: (0, 2)
     print(Board.minimax(test_board6))
     
     
