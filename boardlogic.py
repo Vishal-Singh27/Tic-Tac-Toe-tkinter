@@ -1,3 +1,4 @@
+# Importing necessary packages and libraries
 import math
 import copy
 
@@ -6,15 +7,16 @@ EMPTY = None
 X = 'X'
 O = 'O'
 
+
 # Creating our class
 class Board:
+    # Initializing method
     def __init__(self, board):
         self.board = board
     
     # This classmethod gives 
     @classmethod
     def player(cls, board):
-        
         xcount, ocount = cls.noofxo(board)
             
         if xcount > ocount:
@@ -24,12 +26,14 @@ class Board:
         else:
             raise ValueError("Board is invalid")
     
+    # Gives out resultant board if given an action
     @classmethod
     def result(cls, board, action):
         newboard = copy.deepcopy(board)
         newboard[action[0]][action[1]] = cls.player(board)
         return newboard
         
+    # Gives out every set of actions possible in a board
     @classmethod
     def actions(cls, board):
         acts = set()
@@ -39,6 +43,7 @@ class Board:
                     acts.add((row, col))
         return acts
         
+    # Returns the no. of X and O in a board
     @classmethod
     def noofxo(cls, board=None):
         xcount = 0
@@ -63,6 +68,7 @@ class Board:
                         ocount += 1
         return xcount, ocount
     
+    # Checks and if there is a winner in game, then returns the winner(X or O)
     @staticmethod
     def winner(board):
         # Checking horizontally.
@@ -88,7 +94,7 @@ class Board:
         # Checking diagonally.
         check = 0
         for i in [1, 2]:
-            if board[i][i] == board[0][0]:
+            if board[i][i] == board[0][0] and board[0][0] != EMPTY:
                 check += 1
             if check == 2:
                 return board[0][0]
@@ -96,7 +102,7 @@ class Board:
         check = 0
         col = 1
         for row in [1, 2]:
-            if board[row][col] == board[0][2]:
+            if board[row][col] == board[0][2] and board[0][2] != EMPTY:
                 check += 1
             col = 0
             if check == 2:
@@ -105,16 +111,17 @@ class Board:
         # Else return none.
         return None
     
+    # Checks if the game is finished
     @classmethod
     def terminal(cls, board):
-        check = 0
         if cls.winner(board):
             return True
         for row in board:
             if None in row:
                 return False
         return True
-        
+    
+    # If require, we can use this class method to initialize a new board
     @classmethod
     def initial_state():
         return Board([
@@ -122,7 +129,8 @@ class Board:
             [None, None, None], 
             [None, None, None]
         ])
-        
+    
+    # Returns the utility of the board
     @classmethod
     def utility(cls, board):  
         if cls.terminal(board):
@@ -137,9 +145,11 @@ class Board:
         else:
             return 0
           
+    # When we print self.board what will come out
     def __str__(self):
         return str(self.board)
             
+    # Classmethod that starts the minimax algorithm
     @classmethod
     def minimax(cls, board):
         act = None
@@ -160,7 +170,6 @@ class Board:
                     act = action
         return act
         
-
     # Classmethod that finds minimum utility of all actions at a board state
     @classmethod
     def findmin(cls, board):
@@ -169,10 +178,9 @@ class Board:
         
         ans = math.inf
         for action in cls.actions(board):
-           ans = min(ans, cls.findmax(cls.result(board, action)))
+            ans = min(ans, cls.findmax(cls.result(board, action)))
         
         return ans 
-            
             
     # Classmethod that finds maximum utility of all actions at a board state
     @classmethod
@@ -182,16 +190,17 @@ class Board:
         
         ans = -math.inf
         for action in cls.actions(board):
-           ans = max(ans, cls.findmin(cls.result(board, action)))
-        
+            ans = max(ans, cls.findmin(cls.result(board, action)))
         return ans
-    
     
     def __str__(self):
         return self.board
     
 
 def main():
+    # Some Tests
+    
+    # Testboard1
     print("Testboard1: ")
     test_board1 = [
         ['X', None, 'None'],
@@ -201,6 +210,7 @@ def main():
 
     print(Board.minimax(test_board1))
 
+    # Testboard2
     print("Testboard2: ")
     test_board2 = [
         ['X', 'O', None],
@@ -209,15 +219,17 @@ def main():
     ]
     print(Board.minimax(test_board2))
 
+    # Testboard3
     print("Testboard3: ")
     test_board3 = [
-    ['X', 'O', 'X'],
-    ['X', 'O', 'O'],
-    ['O', 'X', 'X']
+        ['X', 'O', 'X'],
+        ['X', 'O', 'O'],
+        ['O', 'X', 'X']
     ]
     print(Board.winner(test_board3))
     print(Board.minimax(test_board3))
 
+    # Testboard4
     print("Testboard4: ")
     test_board4 = [
         ['X', 'O', X],
@@ -226,6 +238,7 @@ def main():
     ]
     print(Board.minimax(test_board4))
 
+    # Testboard5
     print("Testboard5: ")
     test_board5 = [
         [None, 'O', 'X'],
@@ -234,14 +247,7 @@ def main():
     ]
     print(Board.minimax(test_board5))
     
-    print("test_board6")
-    test_board6 = [
-        [None, O, X],
-        [None, None, X],
-        [None, None, None]
-    ]
-    print(Board.minimax(test_board6))
     
-
+# Making sure that only call main when program is ran by terminal
 if __name__ == "__main__":
     main()

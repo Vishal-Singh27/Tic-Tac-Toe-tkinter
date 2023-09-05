@@ -5,6 +5,7 @@ from tkinterbuttonclass import Buttons, EMPTY, X, O
 # Starting our root window
 root = Tk()
 
+
 def start():    
     newwindow = Toplevel()
     Button(newwindow, text="Play as X", command=lambda: playasx(newwindow)).pack()
@@ -25,8 +26,9 @@ def playaso(window):
     Buttons(root, player=O, padx=20, pady=20, columnspan=2)
 
 
+# A button to start the game
 startbutton = Button(text="Start", command=start, padx=10, pady=10)
 startbutton.grid(row=0, column=3)
 
-# Making the root loop till the program is closed
+# Starting the main event loop
 root.mainloop()
