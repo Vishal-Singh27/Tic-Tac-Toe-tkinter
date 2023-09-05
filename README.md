@@ -27,3 +27,5 @@ Their are 3 main python codes in this directory:
 #### boardlogic.py
 
 ### Lets look at each files one by one!
+#### boardlogic.py
+This file has
