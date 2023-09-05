@@ -12,6 +12,10 @@ The only requirement is to have python install!
 Go to the mac-executable or windows-executable folder depending on your system and run the executable file "Tic-Tac-Toe".
 Or by running runner.py
 
+## For Testing
+To check if AI's terminal, utility, winner(more tests will be added soon) are working as expected, run pytest (a python package that you can install by `pip install pytest`) on test_project.py via:
+> pytest test_project.py
+
 ## Future release news
 I will keep updating this game. I got several ideas in mind about integrating sql and keep game scores, plating human vs human and lot more updates to come. Also my main plan is to have alpha pruning in my minimax algorithm, also I might add depth first 
 
