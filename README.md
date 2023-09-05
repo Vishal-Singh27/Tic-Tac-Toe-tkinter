@@ -62,7 +62,7 @@ minimax, findmin, findmax:
 This file has code and logic of game button which we click to convert a button to X or O in our game.
 This file has the Buttons class which has all the methods that will help us in our code
 Lets look what the classmethods do:
-Firstly lets see \_\_init\_\_
+Firstly lets see \_\_init\_\_:
 > In \_\_init\_\_ when a Buttons type is initialized it creates buttons on the screen, It can take arguments of like rowspan/columnspan/padx/pady/...etc. When those buttons are clicked a clicked method of our class is called
 
 boardcondition:
