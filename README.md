@@ -12,5 +12,8 @@ The only requirement is to have python install!
 ## Usage
 Go to the mac-executable or windows-executable folder depending on your system and run the executable file "Tic-Tac-Toe".
 
+## Video Tutorial
+[Link](https://youtu.be/f6l1dgxMPDs)
+
 ## Future release news
 I will keep updating this game. I got several ideas in mind about integrating sql and keep game scores, plating human vs human and lot more updates to come.
