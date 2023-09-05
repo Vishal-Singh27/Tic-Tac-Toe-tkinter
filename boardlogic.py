@@ -69,8 +69,8 @@ class Board:
         return xcount, ocount
     
     # Checks and if there is a winner in game, then returns the winner(X or O)
-    @staticmethod
-    def winner(board):
+    @classmethod
+    def winner(cls, board):
         # Checking horizontally.
         for row in board:
             check = 0
@@ -123,7 +123,7 @@ class Board:
     
     # If require, we can use this class method to initialize a new board
     @classmethod
-    def initial_state():
+    def initial_state(self):
         return Board([
             [None, None, None],
             [None, None, None], 
