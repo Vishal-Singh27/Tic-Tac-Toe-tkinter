@@ -21,4 +21,9 @@ I will keep updating this game. I got several ideas in mind about integrating sq
 # Explanation of my code
 
 ### How files are Managed
-Their are 3 
+Their are 3 main python codes in this directory:
+#### boardlogic.py 
+#### tkinterbuttonclass.py
+#### boardlogic.py
+
+### Lets look at each files one by one!
