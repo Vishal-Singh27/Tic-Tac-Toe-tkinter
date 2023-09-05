@@ -250,15 +250,6 @@ def main():
     ]
     print(Board.minimax(test_board5))
     
-    # Testboard 6
-    print("test_board 6")
-    test_board6 = [
-        [None, 'O', 'X'],
-        [None, None, 'X'],
-        [None, None, None]
-    ]
-    print(Board.minimax(test_board6))
-    
     
 # Making sure that only call main when program is ran by terminal
 if __name__ == "__main__":
