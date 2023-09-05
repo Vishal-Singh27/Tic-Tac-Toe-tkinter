@@ -69,7 +69,7 @@ class Board:
         for row in board:
             check = 0
             for col in row[1:]:
-                if col == row[0]:
+                if col == row[0] and row[0] != EMPTY:
                     check += 1
             if check == 2:
                 return row[0]
@@ -78,8 +78,9 @@ class Board:
         for col in range(3):
             check = 0
             for row in [1, 2]:
-                if board[row][col] == board[0][col]:
-                    check += 1
+                if board[0][col] != EMPTY:
+                    if board[row][col] == board[0][col]:
+                        check += 1
             
             if check == 2:
                 return board[0][col]
@@ -141,27 +142,25 @@ class Board:
             
     @classmethod
     def minimax(cls, board):
-        if cls.terminal(board):
-            return None
-        
+        act = None
         if cls.player(board) == X:
-            ans = [-math.inf, None]
+            ans = -math.inf
             for action in cls.actions(board):
-                tmp = max(-math.inf, cls.findmin(cls.result(board, action)))
-                if ans[0] < tmp:
-                    ans[0] = tmp
-                    ans[1] = action
-                    
+                result = cls.findmin(cls.result(board, action))
+                if result > ans:
+                    ans = result
+                    act = action
+        
         elif cls.player(board) == O:
-            ans = [math.inf, None]
+            ans = math.inf
             for action in cls.actions(board):
-                tmp = min(math.inf, cls.findmax(cls.result(board, action)))
-                if ans[0] > tmp:
-                    ans[0] = tmp
-                    ans[1] = action
-                    
-        return ans[1]
-    
+                result = cls.findmax(cls.result(board, action))
+                if result < ans:
+                    ans = result
+                    act = action
+        return act
+        
+
     # Classmethod that finds minimum utility of all actions at a board state
     @classmethod
     def findmin(cls, board):
@@ -170,22 +169,21 @@ class Board:
         
         ans = math.inf
         for action in cls.actions(board):
-            tmp = min(math.inf, cls.findmax(cls.result(board, action)))
-            if ans > tmp:
-                ans = tmp
-        return ans
+           ans = min(ans, cls.findmax(cls.result(board, action)))
+        
+        return ans 
+            
             
     # Classmethod that finds maximum utility of all actions at a board state
     @classmethod
     def findmax(cls, board):
         if cls.terminal(board):
             return cls.utility(board)
-    
+        
         ans = -math.inf
         for action in cls.actions(board):
-            tmp = max(-math.inf, cls.findmin(cls.result(board, action)))
-            if ans < tmp:
-                ans = tmp
+           ans = max(ans, cls.findmin(cls.result(board, action)))
+        
         return ans
     
     
@@ -200,9 +198,7 @@ def main():
         [None, 'O', O],
         [O, 'X', 'X']
     ]
-    # Player: 'O' (since X count: 3, O count: 3)
-    # Best Move: (1, 0)
-    # Expected Output: (1, 0)
+
     print(Board.minimax(test_board1))
 
     print("Testboard2: ")
@@ -211,9 +207,6 @@ def main():
         [None, 'O', None],
         ['O', 'X', X]
     ]
-    # Player: 'X' (since X count: 3, O count: 3)
-    # Best Move: (2, 2)
-    # Expected Output: (2, 2)
     print(Board.minimax(test_board2))
 
     print("Testboard3: ")
@@ -222,9 +215,6 @@ def main():
     ['X', 'O', 'O'],
     ['O', 'X', 'X']
     ]
-    # Player: 'X' (since X count: 5, O count: 4)
-    # Best Move: (1, 1)
-    # Expected Output: (1, 1)
     print(Board.winner(test_board3))
     print(Board.minimax(test_board3))
 
@@ -234,9 +224,6 @@ def main():
         ['O', 'X', None],
         [O, None, None]
     ]
-    # Player: 'X' (since X count: 2, O count: 2)
-    # Best Move: (2, 0)
-    # Expected Output: (2, 0)
     print(Board.minimax(test_board4))
 
     print("Testboard5: ")
@@ -245,20 +232,14 @@ def main():
         [None, 'O', 'X'],
         [X, 'X', 'O']
     ]
-    # Player: 'X' (since X count: 6, O count: 3)
-    # Best Move: (0, 0)
-    # Expected Output: (0, 0)
     print(Board.minimax(test_board5))
     
-    print("test_board7")
+    print("test_board6")
     test_board6 = [
-        [None, 'O', 'X'],
-        [None, None, 'X'],
+        [None, O, X],
+        [None, None, X],
         [None, None, None]
     ]
-    # Player: 'X' (since X count: 6, O count: 3)
-    # Best Move: (0, 2)
-    # Expected Output: (0, 2)
     print(Board.minimax(test_board6))
     
 
