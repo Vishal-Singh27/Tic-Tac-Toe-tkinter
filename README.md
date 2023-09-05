@@ -20,12 +20,13 @@ I will keep updating this game. I got several ideas in mind about integrating sq
 
 # Explanation of my code
 
-### How files are Managed
+## How files are Managed
 Their are 3 main python codes in this directory:
 #### boardlogic.py 
 #### tkinterbuttonclass.py
 #### boardlogic.py
 
-### Lets look at each files one by one!
-#### boardlogic.py
-This file has
+## Lets look at each files one by one!
+### boardlogic.py
+This file has code and logic of minimax algorithm.
+This file has the Board which has all the classmethods that will help us in our code
