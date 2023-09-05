@@ -1,6 +1,6 @@
 # CS50p Final Project
 # Introduction
-This project is Tic-Tac-Toe game, I made the gui using tkinter, and implemented the AI using Minimax algorithm.
+This project is Tic-Tac-Toe game, I made the GUI using tkinter, and implemented the AI using Minimax algorithm.
 I have also created executable files of it in mac-executable and window-executable.
 Future updates on software on [Github Repo Link](https://github.com/Vishal-Singh27/Tic-Tac-Toe-tkinter/)
 
@@ -10,12 +10,12 @@ The only requirement is to have python install!
 
 ## Usage
 Go to the mac-executable or windows-executable folder depending on your system and run the executable file "Tic-Tac-Toe".
+Or by running runner.py
 
 ## Future release news
-I will keep updating this game. I got several ideas in mind about integrating sql and keep game scores, plating human vs human and lot more updates to come.
+I will keep updating this game. I got several ideas in mind about integrating sql and keep game scores, plating human vs human and lot more updates to come. Also my main plan is to have alpha pruning in my minimax algorithm, also I might add depth first 
 
 # Explanation of my code
-
 ## How files are Managed
 Their are 3 main python codes in this directory:
 #### boardlogic.py 
