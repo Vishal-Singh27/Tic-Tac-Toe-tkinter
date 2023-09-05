@@ -75,7 +75,7 @@ class Board:
         for row in board:
             check = 0
             for col in row[1:]:
-                if col == row[0] and row[0] != EMPTY:
+                if col == row[0]:
                     check += 1
             if check == 2:
                 return row[0]
@@ -164,12 +164,13 @@ class Board:
         elif cls.player(board) == O:
             ans = math.inf
             for action in cls.actions(board):
-                result = cls.findmax(cls.result(board, action))
-                if result < ans:
-                    ans = result
-                    act = action
-        return act
-        
+                tmp = min(math.inf, cls.findmax(cls.result(board, action)))
+                if ans[0] > tmp:
+                    ans[0] = tmp
+                    ans[1] = action
+                    
+        return ans[1]
+    
     # Classmethod that finds minimum utility of all actions at a board state
     @classmethod
     def findmin(cls, board):
@@ -178,9 +179,11 @@ class Board:
         
         ans = math.inf
         for action in cls.actions(board):
-            ans = min(ans, cls.findmax(cls.result(board, action)))
-        
-        return ans 
+            tmp = min(math.inf, cls.findmax(cls.result(board, action)))
+            if ans > tmp:
+                ans = tmp
+        return ans
+            
             
     # Classmethod that finds maximum utility of all actions at a board state
     @classmethod
@@ -190,7 +193,9 @@ class Board:
         
         ans = -math.inf
         for action in cls.actions(board):
-            ans = max(ans, cls.findmin(cls.result(board, action)))
+            tmp = max(-math.inf, cls.findmin(cls.result(board, action)))
+            if ans < tmp:
+                ans = tmp
         return ans
     
     def __str__(self):
@@ -247,6 +252,16 @@ def main():
     ]
     print(Board.minimax(test_board5))
     
+    print("test_board7")
+    test_board6 = [
+        [None, 'O', 'X'],
+        [None, None, 'X'],
+        [None, None, None]
+    ]
+    # Player: 'X' (since X count: 6, O count: 3)
+    # Best Move: (0, 2)
+    # Expected Output: (0, 2)
+    print(Board.minimax(test_board6))
     
 # Making sure that only call main when program is ran by terminal
 if __name__ == "__main__":
