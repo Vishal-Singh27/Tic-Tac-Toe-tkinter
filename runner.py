@@ -1,3 +1,4 @@
+# Importing necessary libraries
 from tkinter import Tk, Button, Toplevel
 from tkinterbuttonclass import Buttons, EMPTY, X, O
 
@@ -10,12 +11,14 @@ def start():
     Button(newwindow, text="Play as O", command=lambda: playaso(newwindow)).pack()
     
 
+# If user chooses to play as X
 def playasx(window):
     window.destroy()
     startbutton.destroy()
     Buttons(root, padx=40, pady=40, columnspan=2)
 
 
+# If user chooses to play as O
 def playaso(window):
     window.destroy()
     startbutton.destroy()

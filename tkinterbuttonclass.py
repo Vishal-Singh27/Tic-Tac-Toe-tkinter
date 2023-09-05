@@ -1,5 +1,5 @@
 from boardlogic import Board
-from tkinter import *
+from tkinter import Tk, Button
 from tkinter import messagebox
 
 
@@ -90,8 +90,7 @@ class Buttons():
       
 def main():
     root = Tk()
-
-    button = Buttons(root, player=X, rowspan=3, columnspan=3, padx=20, pady=20)
+    Buttons(root, player=X, rowspan=3, columnspan=3, padx=20, pady=20)
     root.mainloop()
     
 if __name__ == "__main__":

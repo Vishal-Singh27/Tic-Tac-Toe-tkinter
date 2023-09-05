@@ -30,13 +30,13 @@ class Board:
         newboard[action[0]][action[1]] = cls.player(board)
         return newboard
         
-    @staticmethod
-    def actions(board):
+    @classmethod
+    def actions(cls, board):
         acts = set()
         for row in range(3):
-            for cell in range(3):
-                if board[row][cell] == EMPTY:
-                    acts.add((row, cell))
+            for col in range(3):
+                if board[row][col] == EMPTY:
+                    acts.add((row, col))
         return acts
         
     @classmethod
@@ -249,6 +249,17 @@ def main():
     # Best Move: (0, 0)
     # Expected Output: (0, 0)
     print(Board.minimax(test_board5))
+    
+    print("test_board7")
+    test_board6 = [
+        [None, 'O', 'X'],
+        [None, None, 'X'],
+        [None, None, None]
+    ]
+    # Player: 'X' (since X count: 6, O count: 3)
+    # Best Move: (0, 2)
+    # Expected Output: (0, 2)
+    print(Board.minimax(test_board6))
     
 
 if __name__ == "__main__":
