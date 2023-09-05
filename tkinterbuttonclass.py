@@ -40,6 +40,7 @@ class Buttons():
             
     def clicked(self, window, row, col):
         self.buttons[row][col].configure(text=Board.player(self.boardcondition()), state="disabled", bg='white')
+        window.update()
         if Board.terminal(self.boardcondition()):
             self.declare_winner(window)
         else:
