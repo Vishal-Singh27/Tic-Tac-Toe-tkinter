@@ -262,6 +262,7 @@ def main():
     # Expected Output: (0, 2)
     print(Board.minimax(test_board6))
     
+    
 # Making sure that only call main when program is ran by terminal
 if __name__ == "__main__":
     main()
