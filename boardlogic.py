@@ -1,6 +1,6 @@
 # Importing necessary packages and libraries
-import math
-import copy
+from math import inf
+from copy import deepcopy
 
 # Initializing some variables that are of use later
 EMPTY = None
@@ -29,7 +29,7 @@ class Board:
     # Gives out resultant board if given an action
     @classmethod
     def result(cls, board, action):
-        newboard = copy.deepcopy(board)
+        newboard = deepcopy(board)
         newboard[action[0]][action[1]] = cls.player(board)
         return newboard
         
@@ -154,7 +154,7 @@ class Board:
     def minimax(cls, board):
         act = None
         if cls.player(board) == X:
-            ans = -math.inf
+            ans = -inf
             for action in cls.actions(board):
                 result = cls.findmin(cls.result(board, action))
                 if result > ans:
@@ -162,7 +162,7 @@ class Board:
                     act = action
         
         elif cls.player(board) == O:
-            ans = math.inf
+            ans = inf
             for action in cls.actions(board):
                 result = cls.findmax(cls.result(board, action))
                 if result < ans:
@@ -176,9 +176,9 @@ class Board:
         if cls.terminal(board):
             return cls.utility(board)
         
-        ans = math.inf
+        ans = inf
         for action in cls.actions(board):
-            tmp = min(math.inf, cls.findmax(cls.result(board, action)))
+            tmp = min(inf, cls.findmax(cls.result(board, action)))
             if ans > tmp:
                 ans = tmp
         return ans
@@ -189,9 +189,9 @@ class Board:
         if cls.terminal(board):
             return cls.utility(board)
         
-        ans = -math.inf
+        ans = -inf
         for action in cls.actions(board):
-            tmp = max(-math.inf, cls.findmin(cls.result(board, action)))
+            tmp = max(-inf, cls.findmin(cls.result(board, action)))
             if ans < tmp:
                 ans = tmp
         return ans
