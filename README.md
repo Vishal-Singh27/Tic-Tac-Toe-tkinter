@@ -1,4 +1,16 @@
-# Tic-Tac-Toe-tkinter
-Repo for my Tic-Tac-Toe Tkinter project
+# CS50p Final Project
+# Introduction
+This is readme of my CS50p Final Project, My name is Vishal Singh, I am from India.
+This project is Tic-Tac-Toe game, I made the gui using tkinter, and implemented the AI using Minimax algorithm.
+I have also created executable files of it in mac-executable and window-executable.
+Future updates on software on [Github Repo Link](https://github.com/Vishal-Singh27/Tic-Tac-Toe-tkinter/)
 
-By Vishal Singh
+## Requirements
+The only requirement is to have python install!
+> If you dont have python installed, in windows install it by microsoft store and in mac install via Homebrew.
+
+## Usage
+Go to the mac-executable or windows-executable folder depending on your system and run the executable file "Tic-Tac-Toe".
+
+## Future release news
+I will keep updating this game. I got several ideas in mind about integrating sql and keep game scores, plating human vs human and lot more updates to come.
