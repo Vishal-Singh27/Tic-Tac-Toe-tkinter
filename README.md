@@ -17,3 +17,8 @@ Go to the mac-executable or windows-executable folder depending on your system a
 
 ## Future release news
 I will keep updating this game. I got several ideas in mind about integrating sql and keep game scores, plating human vs human and lot more updates to come.
+
+# Explanation of my code
+
+### How files are Managed
+Their are 3 
