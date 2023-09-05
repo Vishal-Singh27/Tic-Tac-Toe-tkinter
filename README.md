@@ -2,7 +2,7 @@
 # Introduction
 This project is Tic-Tac-Toe game, I made the GUI using tkinter, and implemented the AI using Minimax algorithm.
 I have also created executable files of it in mac-executable and window-executable.
-Future updates on software on [Github Repo Link](https://github.com/Vishal-Singh27/Tic-Tac-Toe-tkinter/)
+Future updates on software on this repo!
 
 ## Requirements
 The only requirement is to have python install!
@@ -62,7 +62,7 @@ minimax, findmin, findmax:
 This file has code and logic of game button which we click to convert a button to X or O in our game.
 This file has the Buttons class which has all the methods that will help us in our code
 Lets look what the classmethods do:
-Firstly lets see \_\_init\_\_
+Firstly lets see \_\_init\_\_:
 > In \_\_init\_\_ when a Buttons type is initialized it creates buttons on the screen, It can take arguments of like rowspan/columnspan/padx/pady/...etc. When those buttons are clicked a clicked method of our class is called
 
 boardcondition:
