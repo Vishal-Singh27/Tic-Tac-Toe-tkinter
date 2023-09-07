@@ -1,6 +1,6 @@
 # Importing necessary libraries
 from tkinter import Tk, Button, Toplevel, Label
-from tkinterbuttonclass import Buttons, O
+from tkinterbuttonclass import Buttonsforai, O
 
 # Starting our root window
 root = Tk()
@@ -20,23 +20,27 @@ def start():
 def playasx(window):
     global label
     window.destroy()
-    startbutton.destroy()
+    aibutton.destroy()
     label.destroy()
-    Buttons(root, padx=50, pady=50, columnspan=2)
+    Buttonsforai(root, padx=50, pady=50, columnspan=2)
 
 
 # If user chooses to play as O
 def playaso(window):
     global label
     window.destroy()
-    startbutton.destroy()
+    aibutton.destroy()
     label.destroy()
-    Buttons(root, player=O, padx=50, pady=50, columnspan=2)
+    Buttonsforai(root, player=O, padx=50, pady=50, columnspan=2)
 
 
-# A button to start the game
-startbutton = Button(text="Start", command=start, padx=10, pady=10)
-startbutton.grid(row=1, column=3)
+# Button to start the game vs AI
+aibutton = Button(text="PlaywithAI", command=start, padx=10, pady=10)
+aibutton.grid(row=1, column=3)
+
+# Button to start the game vs human
+humanbutton = Button(text="PlaywithAI", command=start, padx=10, pady=10)
+humanbutton.grid(row=1, column=3)
 
 # Starting the main event loop
 root.mainloop()
