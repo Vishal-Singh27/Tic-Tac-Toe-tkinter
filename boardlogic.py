@@ -156,7 +156,7 @@ class Board:
         if cls.player(board) == X:
             ans = -inf
             for action in cls.actions(board):
-                result = cls.findmin(cls.result(board, action, alpha, beta))
+                result = cls.findmin(cls.result(board, action))
                 if result > ans:
                     ans = result
                     act = action
@@ -164,7 +164,7 @@ class Board:
         elif cls.player(board) == O:
             ans = inf
             for action in cls.actions(board):
-                result = cls.findmax(cls.result(board, action,))
+                result = cls.findmax(cls.result(board, action))
                 if result < ans:
                     ans = result
                     act = action
@@ -172,29 +172,26 @@ class Board:
     
     # Classmethod that finds minimum utility of all actions at a board state
     @classmethod
-    def findmin(cls, board, alpha, beta):
+    def findmin(cls, board):
         if cls.terminal(board):
             return cls.utility(board)
         
         ans = inf
         for action in cls.actions(board):
-            tmp = min(ans, cls.findmax(cls.result(board, action, alpha, beta)))
+            tmp = min(inf, cls.findmax(cls.result(board, action)))
             if ans > tmp:
                 ans = tmp
-                alpha = ans
-            if alpha >= beta:
-                return ans
         return ans
                     
     # Classmethod that finds maximum utility of all actions at a board state
     @classmethod
-    def findmax(cls, board, alpha, beta):
+    def findmax(cls, board):
         if cls.terminal(board):
             return cls.utility(board)
         
         ans = -inf
         for action in cls.actions(board):
-            tmp = max(ans, cls.findmin(cls.result(board, action, alpha, beta)))
+            tmp = max(-inf, cls.findmin(cls.result(board, action)))
             if ans < tmp:
                 ans = tmp
         return ans

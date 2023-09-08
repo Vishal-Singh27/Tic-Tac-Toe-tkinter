@@ -10,7 +10,7 @@ EMPTY = None
 
 
 # Making a class containg all buttons and functionality.
-class Buttons():
+class Buttonsforai():
     # Initializing the buttons
     def __init__(self, window, startrow=0, rowspan=1, columnspan=1, startcolumn=0, padx=5, pady=5, player=X):
         self.buttons = [[EMPTY for _ in range(3)] for _ in range(3)]
@@ -77,7 +77,7 @@ class Buttons():
             if response == 0:
                 window.destroy()
             else:
-                self = Buttons(self.window, self.startrow, self.rowspan, self.columnspan,
+                self = Buttonsforai(self.window, self.startrow, self.rowspan, self.columnspan,
                                self.startcolumn, self.padx, self.pady, self.player)
                 
         elif winner == None:
@@ -85,7 +85,7 @@ class Buttons():
             if response == 0:
                 window.destroy()
             else:
-                self = Buttons(
+                self = Buttonsforai(
                     self.window, self.startrow, self.rowspan, self.columnspan, 
                     self.startcolumn, self.padx, self.pady, self.player
                 )
@@ -94,9 +94,65 @@ class Buttons():
             if response == 0:
                 window.destroy()
             else:
-                self = Buttons(self.window, self.startrow, self.rowspan, self.columnspan,
+                self = Buttonsforai(self.window, self.startrow, self.rowspan, self.columnspan,
                                self.startcolumn, self.padx, self.pady, self.player)
             
+
+class Buttonsforpvp(Buttonsforai):
+    def __init__(self, window, startrow=0, rowspan=1, columnspan=1, startcolumn=0, padx=5, pady=5):
+        self.player = X
+        self.buttons = [[EMPTY for _ in range(3)] for _ in range(3)]
+        self.startrow = startrow
+        self.rowspan = rowspan
+        self.columnspan = columnspan
+        self.startcolumn = startcolumn
+        self.padx = padx
+        self.pady = pady
+        self.window = window
+        gridrow = startrow
+        for row in range(3):
+            gridcol = startcolumn
+            for col in range(3):         
+                self.buttons[row][col] = Button(
+                    window, text="-", 
+                    command=lambda r=row, c=col: self.clicked(row=r, col=c, window=window),
+                    padx=padx, pady=pady
+                )
+                self.buttons[row][col].grid(row=gridrow, column=gridcol, columnspan=columnspan, rowspan=rowspan)
+                gridcol += columnspan
+            gridrow += rowspan
+        
+        
+    def clicked(self, window, row, col):
+        self.buttons[row][col].configure(text=Board.player(self.boardcondition()), state="disabled", bg='white')
+        window.update()
+        if Board.terminal(self.boardcondition()):
+            self.declare_winner(window)
+            
+    
+    def declare_winner(self, window):
+        window.update()
+        winner = Board.winner(self.boardcondition())
+        if winner:
+            response = messagebox.askyesno(f"{winner} Won!", f"Congratulations {winner}!, Wanna play again?")
+            if response == 0:
+                window.destroy()
+            else:
+                self = Buttonsforpvp(self.window, self.startrow, self.rowspan, self.columnspan,
+                               self.startcolumn, self.padx, self.pady
+                               )
+                
+        elif winner == None:
+            response = messagebox.askyesno("Tied!", "Game tied, wanna try again?")
+            if response == 0:
+                window.destroy()
+            else:
+                self = Buttonsforpvp(
+                    self.window, self.startrow, self.rowspan, self.columnspan, 
+                    self.startcolumn, self.padx, self.pady
+                )
+
+
 
 # Main function if we wanna check if program is working
 def main():
@@ -104,7 +160,7 @@ def main():
     root = Tk()
     
     # Making the buttons using our class
-    Buttons(root, player=X, rowspan=3, columnspan=3, padx=20, pady=20)
+    Buttonsforpvp(root, rowspan=3, columnspan=3, padx=20, pady=20)
     
     # To start main event loop
     root.mainloop()
