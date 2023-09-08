@@ -8,6 +8,9 @@ Future updates on software on this repo!
 The only requirement is to have python install!
 > If you dont have python installed, in windows install it by microsoft store and in mac install via Homebrew.
 
+## Recently Added PVP support
+You can play with your friends too now in v1.1
+
 ## Usage
 Go to the mac-executable or windows-executable folder depending on your system and run the executable file "Tic-Tac-Toe".
 Or by running runner.py
