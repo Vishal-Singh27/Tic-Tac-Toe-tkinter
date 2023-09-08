@@ -1,4 +1,3 @@
-# CS50p Final Project
 # Introduction
 This project is Tic-Tac-Toe game, I made the GUI using tkinter, and implemented the AI using Minimax algorithm.
 I have also created executable files of it in mac-executable and window-executable.
